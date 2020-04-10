@@ -45,14 +45,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Helpers\Instance.cs" />
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FreeUserHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FreeUserHome.Designer.cs">
+      <DependentUpon>FreeUserHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaidUserHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaidUserHome.Designer.cs">
+      <DependentUpon>PaidUserHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalInfo.Designer.cs">
+      <DependentUpon>PersonalInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FreeUserHome.resx">
+      <DependentUpon>FreeUserHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaidUserHome.resx">
+      <DependentUpon>PaidUserHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalInfo.resx">
+      <DependentUpon>PersonalInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
