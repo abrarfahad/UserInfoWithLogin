@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using System.Windows.Forms;
 using UserInfoWithLogin.Data;
 using UserInfoWithLogin.Entities;
@@ -100,6 +101,81 @@ namespace UserInfoWithLogin
                 MessageBox.Show("Unable to save.");
             }
         }
-        
+
+        private void txtFirstName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var text = (sender as TextBox).Text;
+            
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                e.Cancel = true;
+                txtFirstName.Focus();
+                errorProvider1.SetError(txtFirstName, $"First Name should not be left blank!");
+                
+            }
+            else if (text.Length>0 && text.Length <= 3)
+            {
+                e.Cancel = true;
+                txtFatherName.Focus();
+                errorProvider1.SetError(txtFirstName, "First Name Should not be less than or equals 3 character");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(txtFirstName, "");
+            }
+        }
+
+        private void txtMiddleName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var middleNameTextbox = sender as TextBox;
+            if (string.IsNullOrEmpty(middleNameTextbox.Text))
+            {
+                e.Cancel = true;
+                middleNameTextbox.Focus();
+                errorProvider1.SetError(middleNameTextbox, $"Middle Name Should Not be Empty!!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(middleNameTextbox, "");
+            }
+        }
+
+        private void txtLastName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var tbControl = sender as TextBox;
+            if (string.IsNullOrEmpty(tbControl.Text))
+            {
+                e.Cancel = true;
+                tbControl.Focus();
+                errorProvider1.SetError(tbControl, "Last Name Should Not Be Empty");
+            }
+            else if (!IsValidEmailAddress(tbControl.Text))
+            {
+                e.Cancel = true;
+                tbControl.Focus();
+                errorProvider1.SetError(tbControl, "This Should Be an Email Address");
+
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(tbControl, "");
+            }
+        }
+
+        public bool IsValidEmailAddress(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+                return true;
+            }
+            catch (FormatException fe)
+            {
+                return false;
+            }
+        }
     }
 }

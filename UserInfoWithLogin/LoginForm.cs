@@ -118,5 +118,71 @@ namespace UserInfoWithLogin
                 LogIn();
             }
         }
+
+        private void txtUserName_Validating(object sender, CancelEventArgs e)
+        {
+            Control_Blank_Validating(sender, e,"User Name");
+        }
+
+        private void Control_Blank_Validating(object sender, CancelEventArgs e,string ControlNameToShowUser)
+        {
+            var control = sender as Control;
+            if (control != null)
+            {
+                if (string.IsNullOrWhiteSpace(control.Text))
+                {
+                    e.Cancel = true;
+                    control.Focus();
+                    errorProvider1.SetError(control, $"{ControlNameToShowUser} should not be left blank!");
+                }
+                else
+                {
+                    e.Cancel = false;
+                    errorProvider1.SetError(control, "");
+                }
+            }
+            
+        }
+
+
+        private void Control_MinMaxLength_Validating(object sender, CancelEventArgs e, string ControlNameToShowUser, int maxlength,int minLength) {
+            var control = sender as Control;
+            if (control != null)
+            {
+                if (control.Text.Length<minLength)
+                {
+                    e.Cancel = true;
+                    control.Focus();
+                    errorProvider1.SetError(control, $"{ControlNameToShowUser} should greater than {minLength} char.");
+                }
+                else if (control.Text.Length > maxlength)
+                {
+                    e.Cancel = true;
+                    control.Focus();
+                    errorProvider1.SetError(control, $"{ControlNameToShowUser} should Less than {maxlength} char.");
+                }
+                else
+                {
+                    e.Cancel = false;
+                    errorProvider1.SetError(control, "");
+                }
+            }
+        }
+
+        private void txtPassword_Validating(object sender, CancelEventArgs e)
+        {
+            var control = sender as TextBox;
+            if (control.Text.Trim().Length<=0)
+            {
+                e.Cancel = true;
+                control.Focus();
+                errorProvider1.SetError(control, $"Password should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(control, "");
+            }
+        }
     }
 }

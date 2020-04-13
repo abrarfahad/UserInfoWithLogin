@@ -16,7 +16,7 @@ namespace UserInfoWithLogin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PaidUserHome());
+            Application.Run(new LoginForm());
         }
     }
 }
